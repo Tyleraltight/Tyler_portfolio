@@ -1,0 +1,121 @@
+import voxelImg from '../assets/LOGO.jpg'
+import neuralSketchImg from '../assets/Generated Image February 07, 2026 - 5_00PM.png'
+
+export type ProjectCategory = 'engineering' | 'design'
+
+export type Project = {
+  id: string
+  category: ProjectCategory
+  kind: 'case-study' | 'experimental' | 'tooling' | 'ai-visual' | 'coming-soon'
+  title: string
+  subtitle?: string
+  description: string
+  stack: string[]
+  href?: string
+  image?: string
+  // Case study fields for design projects
+  intent?: string
+  workflow?: string
+  toolsUsed?: string[]
+  videoUrl?: string
+  tags?: string[]
+  concept?: string
+  useCase?: string
+}
+
+// Row 1 — Engineering / Code Projects
+export const engineeringProjects: Project[] = [
+  {
+    id: 'spotify-analysis',
+    category: 'engineering',
+    kind: 'case-study',
+    title: 'Spotify Analysis',
+    subtitle: 'Data Visualization',
+    description:
+      'Translating user streaming habits into actionable insights through Python and interactive data visualization.',
+    stack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
+    href: 'https://github.com/Tyleraltight/Spotify-Analysis',
+    image: '/src/assets/dashboard_overview.jpg',
+  },
+  {
+    id: 'coming-soon',
+    category: 'engineering',
+    kind: 'coming-soon',
+    title: 'Next Project',
+    subtitle: 'In Progress',
+    description: 'Something new is brewing. Stay tuned for updates.',
+    stack: [],
+  },
+]
+
+// Row 2 — Design & AI Visuals
+export const designProjects: Project[] = [
+  {
+    id: 'ai-fashion-video',
+    category: 'design',
+    kind: 'ai-visual',
+    title: 'Cinematic AI Fashion Exploration',
+    subtitle: 'AI Video',
+    description:
+      'A cinematic exploration of AI-generated high-fashion aesthetics and material textures.',
+    stack: ['Midjourney v6', 'Google Veo'],
+    videoUrl: '/src/assets/Stylish_vertical_cinematic_1080p_202602061932.mp4',
+    tags: ['AI Video', 'Midjourney', 'Veo'],
+    concept:
+      'Investigating how AI can interpret complex fashion textures like silk and lace in motion.',
+    workflow:
+      'Prompt engineering in Midjourney v6 to establish the visual key, followed by motion synthesis in Veo.',
+    useCase: 'Prototyping digital advertising for luxury brands.',
+  },
+  {
+    id: 'veo3-cinema',
+    category: 'design',
+    kind: 'ai-visual',
+    title: 'Cinematic Fragments',
+    subtitle: 'Veo3',
+    description:
+      'AI-generated cinematic stills exploring narrative through motion and light.',
+    stack: ['Google Veo3'],
+    intent:
+      'Investigating whether text-to-video models can produce stills with genuine cinematic grammar — composition, lighting ratios, and implied motion.',
+    workflow:
+      'Narrative storyboarding → Prompt scripting with camera direction cues → Veo3 generation → Frame extraction → Color grading.',
+    toolsUsed: ['Google Veo3', 'DaVinci Resolve', 'After Effects'],
+  },
+  {
+    id: 'voxel-openai-branding',
+    category: 'design',
+    kind: 'ai-visual',
+    title: 'Voxel Brand Reimagining: A Sandbox Framework',
+    subtitle: 'Voxel Art',
+    description:
+      'A scalable visual framework for translating corporate identities into sandbox-style environments.',
+    stack: ['Voxel Art', 'Branding', 'AI Generation', 'World Building'],
+    image: voxelImg,
+    tags: ['Voxel Art', 'Branding', 'AI Generation', 'World Building'],
+    concept:
+      'Bridging high-tech AI branding and nostalgic sandbox creativity by reimagining the OpenAI logo as a living voxel landscape.',
+    workflow:
+      'Geometric voxelization of 2D logos via Midjourney/Nano-banana, embedded into a Minecraft-native scene with ray-traced atmospheric synthesis.',
+    useCase:
+      'Experimental branding for companies, interactive metaverse hubs, or social media campaigns engaging build-culture communities.',
+  },
+  {
+    id: 'neural-sketch',
+    category: 'design',
+    kind: 'ai-visual',
+    title: 'Neural Sketch: Humanoid Synthesis',
+    subtitle: 'Fine Art',
+    description:
+      'An exploration of the boundary between traditional hand-drawn line art and generative abstraction, creating complex living wireframes.',
+    stack: ['Nano Banana', 'Fine Art', 'Generative AI'],
+    image: neuralSketchImg,
+    tags: ['Fine Art', 'Nano Banana', 'Minimalism', 'Line Art'],
+    concept:
+      'Replicating the raw, spontaneous energy of a master artist\'s sketchpad by utilizing Nano Banana\'s line-weight capabilities to balance anatomical precision with chaotic, explosive geometry.',
+    workflow:
+      'Style anchoring via Nano Banana for stroke pressure and ink density, abstract compositional clustering of humanoid silhouettes, and organic imperfection injection to simulate charcoal and graphite textures.',
+    useCase:
+      'Digital art installations, editorial illustrations for tech-philosophy journals, or experimental UI backgrounds for minimalist creative platforms.',
+  },
+]

@@ -1,0 +1,59 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Text', 'Segoe UI',
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background-color: #eef3fb;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Final Color-Calibrated Mesh Gradient for Tyler */
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* 基底使用最干净的浅天蓝（降一点明度，减弱刺眼感） */
+  background-color: #bfd2f6;
+  background-image:
+    /* 1. 顶部高光：从纯白改为柔和的浅蓝白，降低刺眼感 */
+    radial-gradient(at 50% -20%, rgba(236, 244, 255, 0.9) 0px, transparent 80%),
+    /* 2. 右上角的亮蓝色光斑 (Sky-300) */
+    radial-gradient(at 90% 10%, rgba(96, 165, 250, 0.6) 0px, transparent 46%),
+    /* 3. 左侧的核心电光蓝 (关键：Sky-400，低透明度多次叠加) */
+    radial-gradient(at 5% 50%, rgba(59, 130, 246, 0.45) 0px, transparent 58%),
+    /* 4. 底部正中的深蓝色深度 (这是示例图中那个蓝色的灵魂) */
+    radial-gradient(at 50% 110%, rgba(30, 64, 175, 0.7) 0px, transparent 64%),
+    /* 5. 整体底部的微调 */
+    linear-gradient(to bottom, #eff6ff, #c7ddff);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  /* 确保文字对比度，使用深色蓝灰 */
+  color: #0f172a;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
