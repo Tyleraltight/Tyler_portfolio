@@ -1,5 +1,7 @@
 import voxelImg from '../assets/LOGO.jpg'
 import neuralSketchImg from '../assets/Generated Image February 07, 2026 - 5_00PM.png'
+import parentsHandbookImg from '../assets/parentshandbook.vercel.app_index.html (1).png'
+import dashboardImg from '../assets/dashboard_overview.jpg'
 
 export type ProjectCategory = 'engineering' | 'design'
 
@@ -26,6 +28,18 @@ export type Project = {
 // Row 1 — Engineering / Code Projects
 export const engineeringProjects: Project[] = [
   {
+    id: 'parents-handbook',
+    category: 'engineering',
+    kind: 'case-study',
+    title: 'ParentsHandbook',
+    subtitle: 'LLM-powered Movie Audit',
+    description:
+      'An LLM-based movie content audit tool providing parents with visual content risk assessments across four dimensions: Sex & Nudity, Violence, Profanity, and Frightening scenes.',
+    stack: ['FastAPI', 'Gemini', 'Redis', 'Vercel'],
+    href: 'https://github.com/Tyleraltight/ParentsHandbook',
+    image: parentsHandbookImg,
+  },
+  {
     id: 'spotify-analysis',
     category: 'engineering',
     kind: 'case-study',
@@ -35,16 +49,7 @@ export const engineeringProjects: Project[] = [
       'Translating user streaming habits into actionable insights through Python and interactive data visualization.',
     stack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
     href: 'https://github.com/Tyleraltight/Spotify-Analysis',
-    image: '/src/assets/dashboard_overview.jpg',
-  },
-  {
-    id: 'coming-soon',
-    category: 'engineering',
-    kind: 'coming-soon',
-    title: 'Next Project',
-    subtitle: 'In Progress',
-    description: 'Something new is brewing. Stay tuned for updates.',
-    stack: [],
+    image: dashboardImg,
   },
 ]
 

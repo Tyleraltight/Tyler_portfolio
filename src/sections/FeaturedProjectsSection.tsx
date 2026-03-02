@@ -6,12 +6,56 @@ import { Body, MetaText, Subheading } from '../components/ui/Typography'
 import { ProjectDetailModal } from '../components/ProjectDetailModal'
 import { engineeringProjects, designProjects } from '../data/projects'
 import type { Project } from '../data/projects'
-import dashboardImg from '../assets/dashboard_overview.jpg'
+
+function ProjectCard({ project, showImage = false }: { project: Project; showImage?: boolean }) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noreferrer"
+      className="bento-card bento-card--primary bento-card--interactive project-card project-card--hero"
+      style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {showImage && (
+        <div className="project-hero-image-wrap">
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            className="project-hero-image"
+            animate={{
+              filter: isHovered ? 'blur(0px)' : 'blur(12px)',
+            }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          />
+        </div>
+      )}
+      <div className="project-card-body">
+        <MetaText>Case Study · {project.subtitle}</MetaText>
+        <Subheading className="project-hero-title">{project.title}</Subheading>
+        <Body>{project.description}</Body>
+        <div className="project-card-footer">
+          <MetaText>{project.stack.join(' · ')}</MetaText>
+          <span className="project-github-link">
+            <span className="project-github-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </span>
+            View on GitHub
+          </span>
+        </div>
+      </div>
+    </a>
+  )
+}
 
 export function FeaturedProjectsSection() {
-  const spotify = engineeringProjects[0]
-  const comingSoon = engineeringProjects[1]
-  const [isHovered, setIsHovered] = useState(false)
+  const parentsHandbook = engineeringProjects[0]
+  const spotify = engineeringProjects[1]
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({})
@@ -45,54 +89,11 @@ export function FeaturedProjectsSection() {
       <Container>
         {/* Row 1 — Engineering (2 big columns) */}
         <div className="projects-row projects-row--engineering">
-          {/* Spotify Card */}
-          <a
-            href={spotify.href}
-            target="_blank"
-            rel="noreferrer"
-            className="bento-card bento-card--primary bento-card--interactive project-card project-card--hero"
-            style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <div className="project-hero-image-wrap">
-              <motion.img
-                src={dashboardImg}
-                alt="Spotify Analytics Dashboard"
-                className="project-hero-image"
-                animate={{
-                  filter: isHovered ? 'blur(0px)' : 'blur(12px)',
-                }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              />
-            </div>
-            <div className="project-card-body">
-              <MetaText>Case Study · {spotify.subtitle}</MetaText>
-              <Subheading className="project-hero-title">{spotify.title}</Subheading>
-              <Body>{spotify.description}</Body>
-              <div className="project-card-footer">
-                <MetaText>{spotify.stack.join(' · ')}</MetaText>
-                <span className="project-github-link">
-                  <span className="project-github-icon">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-                    </svg>
-                  </span>
-                  View on GitHub
-                </span>
-              </div>
-            </div>
-          </a>
+          {/* ParentsHandbook Card - Left */}
+          <ProjectCard project={parentsHandbook} showImage />
 
-          {/* Coming Soon Card */}
-          <div className="bento-card project-card project-card--coming-soon">
-            <div className="coming-soon-content">
-              <div className="coming-soon-icon">⚙️</div>
-              <Subheading className="coming-soon-title">{comingSoon.title}</Subheading>
-              <Body>{comingSoon.description}</Body>
-              <MetaText className="coming-soon-label">Work in Progress</MetaText>
-            </div>
-          </div>
+          {/* Spotify Card - Right */}
+          <ProjectCard project={spotify} showImage />
         </div>
 
         {/* Row 2 — Design & AI Visuals (4 columns) */}
