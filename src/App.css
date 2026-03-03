@@ -459,15 +459,22 @@
 /* Full-width image at top of card, no cropping */
 .project-hero-image-wrap {
   width: 100%;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 22px 22px 0 0;
   border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
 }
 
 .project-hero-image {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .project-card-body {
