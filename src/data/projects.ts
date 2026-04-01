@@ -2,6 +2,7 @@ import voxelImg from '../assets/LOGO.jpg'
 import neuralSketchImg from '../assets/Generated Image February 07, 2026 - 5_00PM.png'
 import parentsHandbookImg from '../assets/demo1.png'
 import dashboardImg from '../assets/dashboard_overview.jpg'
+import easyNoteImg from '../assets/mockup1.png'
 
 export type ProjectCategory = 'engineering' | 'design'
 
@@ -25,8 +26,20 @@ export type Project = {
   useCase?: string
 }
 
-// Row 1 — Engineering / Code Projects
+// Row 1 — Engineering / Code Projects (2x2 grid)
 export const engineeringProjects: Project[] = [
+  {
+    id: 'easynote',
+    category: 'engineering',
+    kind: 'case-study',
+    title: 'EasyNote',
+    subtitle: 'Minimalist Productivity Hub',
+    description:
+      'A minimalist productivity hub combining annual goal (Flag) tracking, rapid note-taking, and calendar retrospection, featuring real-time multi-device sync via Supabase.',
+    stack: ['React', 'Supabase', 'TypeScript', 'Tailwind'],
+    href: 'https://github.com/Tyleraltight/EasyNote',
+    image: easyNoteImg,
+  },
   {
     id: 'parents-handbook',
     category: 'engineering',
@@ -50,6 +63,14 @@ export const engineeringProjects: Project[] = [
     stack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
     href: 'https://github.com/Tyleraltight/Spotify-Analysis',
     image: dashboardImg,
+  },
+  {
+    id: 'coming-soon',
+    category: 'engineering',
+    kind: 'coming-soon',
+    title: 'Coming Soon',
+    description: 'Work in Progress',
+    stack: [],
   },
 ]
 

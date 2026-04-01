@@ -3,7 +3,7 @@ export function StyledContactFooter() {
         <footer className="styled-footer" id="contact">
             <div className="styled-footer-container">
                 <div className="styled-footer-card">
-
+                    
                     {/* Left column */}
                     <div className="footer-left">
                         <h2 className="footer-card-heading">Have something in mind?</h2>

@@ -1,6 +1,7 @@
 ---
-trigger: model_decision
+trigger: glob
 description: This rule applies only when the user explicitly requests UI design, visual style development, or mentions “hand-drawn style.” If the user is working on algorithm implementation, backend logic, or general programming tasks, disregard this rule.
+globs: This rule applies only when the user explicitly requests UI design, visual style development, or mentions “hand-drawn style.” If the user is working on algorithm implementation, backend logic, or general programming tasks, disregard this rule.
 ---
 
 # UI Design System: Hand-drawn Style (Selective Activation)

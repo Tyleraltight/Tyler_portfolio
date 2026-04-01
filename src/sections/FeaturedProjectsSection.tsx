@@ -12,11 +12,11 @@ function ProjectCard({ project, showImage = false }: { project: Project; showIma
 
   return (
     <a
-      href={project.href}
-      target="_blank"
-      rel="noreferrer"
+      href={project.href || undefined}
+      target={project.href ? '_blank' : undefined}
+      rel={project.href ? 'noreferrer' : undefined}
       className="bento-card bento-card--primary bento-card--interactive project-card project-card--hero"
-      style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+      style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: project.href ? 'pointer' : 'default' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -38,24 +38,40 @@ function ProjectCard({ project, showImage = false }: { project: Project; showIma
         <Subheading className="project-hero-title">{project.title}</Subheading>
         <Body>{project.description}</Body>
         <div className="project-card-footer">
-          <MetaText>{project.stack.join(' · ')}</MetaText>
-          <span className="project-github-link">
-            <span className="project-github-icon">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-              </svg>
+          <MetaText>{project.stack.map(s => s.toUpperCase()).join(' · ')}</MetaText>
+          {project.href && (
+            <span className="project-github-link">
+              <span className="project-github-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                </svg>
+              </span>
+              View on GitHub
             </span>
-            View on GitHub
-          </span>
+          )}
         </div>
       </div>
     </a>
   )
 }
 
+// Dashed-border placeholder for the 4th engineering slot
+function ComingSoonCard() {
+  return (
+    <div className="bento-card project-card project-card--coming-soon">
+      <div className="coming-soon-content">
+        <div className="coming-soon-dots">
+          <span className="coming-soon-dot">.</span>
+          <span className="coming-soon-dot">.</span>
+          <span className="coming-soon-dot">.</span>
+        </div>
+        <span className="coming-soon-label">COMING SOON</span>
+      </div>
+    </div>
+  )
+}
+
 export function FeaturedProjectsSection() {
-  const parentsHandbook = engineeringProjects[0]
-  const spotify = engineeringProjects[1]
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({})
@@ -87,13 +103,15 @@ export function FeaturedProjectsSection() {
       className="projects-section"
     >
       <Container>
-        {/* Row 1 — Engineering (2 big columns) */}
+        {/* Row 1 — Engineering (2x2 grid) */}
         <div className="projects-row projects-row--engineering">
-          {/* ParentsHandbook Card - Left */}
-          <ProjectCard project={parentsHandbook} showImage />
-
-          {/* Spotify Card - Right */}
-          <ProjectCard project={spotify} showImage />
+          {engineeringProjects.map((project) =>
+            project.kind === 'coming-soon' ? (
+              <ComingSoonCard key={project.id} />
+            ) : (
+              <ProjectCard key={project.id} project={project} showImage />
+            )
+          )}
         </div>
 
         {/* Row 2 — Design & AI Visuals (4 columns) */}

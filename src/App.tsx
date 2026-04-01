@@ -3,6 +3,7 @@ import { HeroSection } from './sections/HeroSection'
 import { FeaturedProjectsSection } from './sections/FeaturedProjectsSection'
 import { AboutSection } from './sections/AboutSection'
 import { StyledContactFooter } from './components/StyledContactFooter'
+import { BackToTop } from './components/ui/BackToTop'
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <AboutSection />
         <StyledContactFooter />
       </main>
+      
+      <BackToTop />
     </div>
   )
 }
