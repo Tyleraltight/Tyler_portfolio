@@ -1,5 +1,6 @@
 # React + TypeScript + Vite
 
+🚀 **Live Deployment**: [https://tyleraltight.github.io/minimal-bento-portfolio/](https://tyleraltight.github.io/minimal-bento-portfolio/)
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
