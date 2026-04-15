@@ -3,6 +3,7 @@ import neuralSketchImg from '../assets/Generated Image February 07, 2026 - 5_00P
 import parentsHandbookImg from '../assets/demo1.png'
 import dashboardImg from '../assets/dashboard_overview.jpg'
 import easyNoteImg from '../assets/mockup1.png'
+import antigravityBuddyImg from '../assets/antigravity_bot.png'
 import aiFashionVideo from '../assets/Stylish_vertical_cinematic_1080p_202602061932.mp4'
 
 export type ProjectCategory = 'engineering' | 'design'
@@ -66,6 +67,18 @@ export const engineeringProjects: Project[] = [
     image: dashboardImg,
   },
   {
+    id: 'antigravity-buddy',
+    category: 'engineering',
+    kind: 'case-study',
+    title: 'Antigravity Buddy',
+    subtitle: 'AI Desktop Companion',
+    description:
+      'A desktop AI companion app featuring a floating robot assistant with natural language interaction, built with Electron and modern AI APIs.',
+    stack: ['Rust', 'CSS', 'TypeScript', 'Node.js'],
+    href: 'https://github.com/Tyleraltight/antigravity-buddy',
+    image: antigravityBuddyImg,
+  },
+  {
     id: 'coming-soon',
     category: 'engineering',
     kind: 'coming-soon',
@@ -86,7 +99,6 @@ export const designProjects: Project[] = [
     description:
       'A cinematic exploration of AI-generated high-fashion aesthetics and material textures.',
     stack: ['Midjourney v6', 'Google Veo'],
-    videoUrl: aiFashionVideo,
     tags: ['AI Video', 'Midjourney', 'Veo'],
     concept:
       'Investigating how AI can interpret complex fashion textures like silk and lace in motion.',

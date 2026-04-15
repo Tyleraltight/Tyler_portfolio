@@ -103,9 +103,9 @@ export function FeaturedProjectsSection() {
       className="projects-section"
     >
       <Container>
-        {/* Row 1 — Engineering (2x2 grid) */}
+        {/* Row 1 — Engineering (2x2 grid, first 4 projects) */}
         <div className="projects-row projects-row--engineering">
-          {engineeringProjects.map((project) =>
+          {engineeringProjects.slice(0, 4).map((project) =>
             project.kind === 'coming-soon' ? (
               <ComingSoonCard key={project.id} />
             ) : (
@@ -113,6 +113,19 @@ export function FeaturedProjectsSection() {
             )
           )}
         </div>
+
+        {/* Row 2 — 5th project (1x2 grid) */}
+        {engineeringProjects.length > 4 && (
+          <div className="projects-row projects-row--engineering" style={{ marginTop: '1.6rem' }}>
+            {engineeringProjects.slice(4).map((project) =>
+              project.kind === 'coming-soon' ? (
+                <ComingSoonCard key={project.id} />
+              ) : (
+                <ProjectCard key={project.id} project={project} showImage />
+              )
+            )}
+          </div>
+        )}
 
         {/* Row 2 — Design & AI Visuals (4 columns) */}
         <div className="projects-row-label">
