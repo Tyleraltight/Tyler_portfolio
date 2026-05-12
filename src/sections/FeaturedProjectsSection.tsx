@@ -23,7 +23,7 @@ function ProjectCard({ project, showImage = false }: { project: Project; showIma
       target={project.href ? '_blank' : undefined}
       rel={project.href ? 'noreferrer' : undefined}
       className="bento-card bento-card--primary bento-card--interactive project-card project-card--hero"
-      style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: project.href ? 'pointer' : 'default' }}
+      style={{ textDecoration: 'none', color: 'inherit', cursor: project.href ? 'pointer' : 'default' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
