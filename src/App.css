@@ -463,6 +463,13 @@
   margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+  .hero-intro {
+    /* Moving the aligned block left by 1cm as requested */
+    transform: translateX(-1cm);
+  }
+}
+
 .hero-heading {
   font-size: 2.4rem;
   line-height: 1.04;
@@ -821,7 +828,7 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    height: 380px; /* Fixed height to prevent vertical jumping */
+    height: 420px; /* Increased to give images more room to scale up */
     gap: 1rem;
   }
 
@@ -852,16 +859,16 @@
     box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.18);
   }
 
-  /* Portrait cards (1-3): VERY narrow expansion to eliminate massive white borders! */
+  /* Portrait cards (1-3): Moderate expansion to allow images to scale up nicely */
   .projects-row--design .project-card--visual:nth-child(1):hover,
   .projects-row--design .project-card--visual:nth-child(2):hover,
   .projects-row--design .project-card--visual:nth-child(3):hover {
-    flex: 1.35; 
+    flex: 2.4; 
   }
 
   /* Landscape card (4): Wide expansion */
   .projects-row--design .project-card--visual:nth-child(4):hover {
-    flex: 3.2; 
+    flex: 3.5; 
   }
 
   .projects-row--design .visual-card-image-slot {
