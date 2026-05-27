@@ -7,6 +7,7 @@ import alineHeroImg from '../assets/aline-hero.png'
 import rainbowByteImg from '../assets/rainbow-byte.png'
 import englishImg from '../assets/english.png'
 import apocalypticBehemothImg from '../assets/apocalyptic-behemoth.png'
+import iammusicImg from '../assets/Screenshots.png'
 
 export type ProjectCategory = 'engineering' | 'design'
 
@@ -76,20 +77,20 @@ export const engineeringProjects: Project[] = [
     }
   },
   {
-    id: 'spotify-analysis',
+    id: 'aline-designer-recruitment',
     category: 'engineering',
     kind: 'case-study',
-    title: 'Spotify Analysis',
-    subtitle: 'Data Visualization',
+    title: 'A-Line',
+    subtitle: 'Designer Recruitment Platform',
     description:
-      "An interactive data visualization dashboard for Spotify's audio catalog, featuring K-Means clustering and multi-dimensional analysis via Streamlit & Plotly.",
-    stack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
-    href: 'https://github.com/Tyleraltight/Spotify-Analysis',
-    image: dashboardImg,
+      'A premium landing page for a top-tier designer recruitment agency, featuring bold typographic hierarchy, geometric bento grid layout, and an uncompromising aesthetic standard.',
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    href: 'https://tyleraltight.github.io/DesignerApplyment_company/A-Line-landing/index.html',
+    image: alineHeroImg,
     zh: {
-      title: 'Spotify 数据分析',
-      subtitle: '交互式数据可视化',
-      description: '专为 Spotify 音频目录打造的交互式数据可视化仪表盘，利用 Streamlit 和 Plotly 实现 K-Means 聚类与多维度数据分析。'
+      title: 'A-Line',
+      subtitle: '顶尖设计师选聘平台',
+      description: '为顶尖设计师招聘机构打造的高级落地页，采用大胆的排版层级、几何 Bento 布局，以及毫不妥协的美学标准。'
     }
   },
   {
@@ -110,20 +111,37 @@ export const engineeringProjects: Project[] = [
     }
   },
   {
-    id: 'aline-designer-recruitment',
+    id: 'spotify-analysis',
     category: 'engineering',
     kind: 'case-study',
-    title: 'A-Line',
-    subtitle: 'Designer Recruitment Platform',
+    title: 'Spotify Analysis',
+    subtitle: 'Data Visualization',
     description:
-      'A premium landing page for a top-tier designer recruitment agency, featuring bold typographic hierarchy, geometric bento grid layout, and an uncompromising aesthetic standard.',
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    href: 'https://tyleraltight.github.io/DesignerApplyment_company/A-Line-landing/index.html',
-    image: alineHeroImg,
+      "An interactive data visualization dashboard for Spotify's audio catalog, featuring K-Means clustering and multi-dimensional analysis via Streamlit & Plotly.",
+    stack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
+    href: 'https://github.com/Tyleraltight/Spotify-Analysis',
+    image: dashboardImg,
     zh: {
-      title: 'A-Line',
-      subtitle: '顶尖设计师选聘平台',
-      description: '为顶尖设计师招聘机构打造的高级落地页，采用大胆的排版层级、几何 Bento 布局，以及毫不妥协的美学标准。'
+      title: 'Spotify 数据分析',
+      subtitle: '交互式数据可视化',
+      description: '专为 Spotify 音频目录打造的交互式数据可视化仪表盘，利用 Streamlit 和 Plotly 实现 K-Means 聚类与多维度数据分析。'
+    }
+  },
+  {
+    id: 'iammusic',
+    category: 'engineering',
+    kind: 'case-study',
+    title: 'IAMMUSIC',
+    subtitle: '3D Vinyl Player',
+    description:
+      'A premium vinyl record player web experience with a 3D perspective gallery and seamless streaming music.',
+    stack: ['React', 'CSS', 'JavaScript'],
+    href: 'https://tyleraltight.github.io/IAMMUSIC/',
+    image: iammusicImg,
+    zh: {
+      title: 'IAMMUSIC',
+      subtitle: '3D 拟真黑胶唱机',
+      description: '一个基于 3D 视角画廊与无缝流媒体音乐播放的拟真黑胶唱片机网页端交互体验。'
     }
   },
   {
