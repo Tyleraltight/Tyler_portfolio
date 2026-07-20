@@ -1,8 +1,6 @@
-import voxelImg from '../assets/LOGO.jpg'
-import parentsHandbookImg from '../assets/demo1.png'
-import dashboardImg from '../assets/preview_top.png'
+import handmadeLogoImg from '../assets/HandmadeLogo.jpg'
+import parentsHandbookImg from '../assets/Parentshandbook.png'
 import easyNoteImg from '../assets/mockup1.png'
-import antigravityBuddyImg from '../assets/alien-padded.png'
 import alineHeroImg from '../assets/aline-hero.png'
 import rainbowByteImg from '../assets/rainbow-byte.png'
 import englishImg from '../assets/english.png'
@@ -40,7 +38,7 @@ export type Project = {
   }
 }
 
-// Row 1 — Engineering / Code Projects (2x2 grid)
+// Row 1 — Engineering / Code Projects
 export const engineeringProjects: Project[] = [
   {
     id: 'easynote',
@@ -49,14 +47,14 @@ export const engineeringProjects: Project[] = [
     title: 'EasyNote',
     subtitle: 'Minimalist Productivity Hub',
     description:
-      'A minimal goal-tracking & note-taking PWA with Supabase cloud sync, offline-first design, and seamless cross-device experience.',
+      'A goal-tracking and note-taking PWA built with Supabase for cloud sync and offline-first use across devices.',
     stack: ['React', 'Supabase', 'TypeScript', 'Tailwind'],
     href: 'https://github.com/Tyleraltight/EasyNote',
     image: easyNoteImg,
     zh: {
       title: 'EasyNote',
       subtitle: '极简生产力枢纽',
-      description: '一个结合极简目标追踪与笔记功能的 PWA 应用，具备 Supabase 云同步、优先离线设计以及无缝跨端体验。'
+      description: '一个结合目标追踪与笔记功能的 PWA 应用，支持 Supabase 云同步，具备离线优先设计并可多端协同。'
     }
   },
   {
@@ -66,14 +64,14 @@ export const engineeringProjects: Project[] = [
     title: 'ParentsHandbook',
     subtitle: 'LLM-powered Movie Audit',
     description:
-      'An LLM-powered NSFW content audit tool that evaluates movies across five dimensions — sex, violence, gore, profanity, and substance use — with structured risk scoring via Gemini.',
+      'An NSFW movie audit tool built with Gemini that rates content across five categories, including sex, violence, gore, profanity, and substance use, producing structured risk scores.',
     stack: ['FastAPI', 'Gemini', 'Redis', 'Vercel'],
     href: 'https://github.com/Tyleraltight/ParentsHandbook',
     image: parentsHandbookImg,
     zh: {
       title: 'ParentsHandbook',
       subtitle: '大语言模型电影内容审计',
-      description: '基于大语言模型的成人内容审计工具，通过 Gemini 生成结构化风险评分，从五个维度（色情、暴力、血腥、脏话及药物滥用）评估电影内容。'
+      description: '基于 Gemini 的成人电影内容审计工具，从色情、暴力、血腥、脏话与药物滥用等 5 项指标生成结构化风险评分。'
     }
   },
   {
@@ -83,48 +81,14 @@ export const engineeringProjects: Project[] = [
     title: 'A-Line',
     subtitle: 'Designer Recruitment Platform',
     description:
-      'A premium landing page for a top-tier designer recruitment agency, featuring bold typographic hierarchy, geometric bento grid layout, and an uncompromising aesthetic standard.',
+      'A landing page for a designer recruitment agency, built with a bento grid layout and strong typographic hierarchy.',
     stack: ['HTML', 'CSS', 'JavaScript'],
     href: 'https://tyleraltight.github.io/DesignerApplyment_company/A-Line-landing/index.html',
     image: alineHeroImg,
     zh: {
       title: 'A-Line',
       subtitle: '顶尖设计师选聘平台',
-      description: '为顶尖设计师招聘机构打造的高级落地页，采用大胆的排版层级、几何 Bento 布局，以及毫不妥协的美学标准。'
-    }
-  },
-  {
-    id: 'antigravity-buddy',
-    category: 'engineering',
-    kind: 'case-study',
-    title: 'Antigravity Buddy',
-    subtitle: 'AI Desktop Companion',
-    description:
-      'A desktop AI agent status companion for Google Antigravity, featuring Dynamic Island-style animations and real-time workflow state visualization, built with Rust (Tauri).',
-    stack: ['Rust', 'CSS', 'TypeScript', 'Node.js'],
-    href: 'https://github.com/Tyleraltight/antigravity-buddy',
-    image: antigravityBuddyImg,
-    zh: {
-      title: '反重力机器人',
-      subtitle: 'AI 桌面助手',
-      description: '为 Google Antigravity 打造的桌面端 AI 智能体状态伴侣，拥有类似灵动岛的动画效果及实时的完整工作流状态可视化，基于 Rust (Tauri) 开发。'
-    }
-  },
-  {
-    id: 'spotify-analysis',
-    category: 'engineering',
-    kind: 'case-study',
-    title: 'Spotify Analysis',
-    subtitle: 'Data Visualization',
-    description:
-      "An interactive data visualization dashboard for Spotify's audio catalog, featuring K-Means clustering and multi-dimensional analysis via Streamlit & Plotly.",
-    stack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
-    href: 'https://github.com/Tyleraltight/Spotify-Analysis',
-    image: dashboardImg,
-    zh: {
-      title: 'Spotify 数据分析',
-      subtitle: '交互式数据可视化',
-      description: '专为 Spotify 音频目录打造的交互式数据可视化仪表盘，利用 Streamlit 和 Plotly 实现 K-Means 聚类与多维度数据分析。'
+      description: '为设计师招聘机构设计的品牌落地页，采用 Bento 网格布局与清晰的文字排版层级。'
     }
   },
   {
@@ -134,14 +98,14 @@ export const engineeringProjects: Project[] = [
     title: 'IAMMUSIC',
     subtitle: '3D Vinyl Player',
     description:
-      'A premium vinyl record player web experience with a 3D perspective gallery and seamless streaming music.',
+      'An interactive web vinyl record player with a 3D perspective gallery and audio streaming.',
     stack: ['React', 'CSS', 'JavaScript'],
     href: 'https://tyleraltight.github.io/IAMMUSIC/',
     image: iammusicImg,
     zh: {
       title: 'IAMMUSIC',
       subtitle: '3D 拟真黑胶唱机',
-      description: '一个基于 3D 视角画廊与无缝流媒体音乐播放的拟真黑胶唱片机网页端交互体验。'
+      description: '一个带有 3D 视角画廊与在线音乐播放功能的黑胶唱片机网页应用。'
     }
   },
   {
@@ -167,21 +131,21 @@ export const designProjects: Project[] = [
     title: 'Rainbow Byte: Pixel Joy',
     subtitle: 'Mascot Branding',
     description:
-      'An IP expansion of the "buddy" mascot from my Antigravity Bot project, bringing the pixel character to life through vibrant merchandising and emotes.',
+      'A mascot branding project expanding the pixel character from my Antigravity Bot into emotes and merchandise.',
     stack: ['Pixel Art', 'Character Design', 'Merchandising'],
     image: rainbowByteImg,
     tags: ['Pixel Art', 'Mascot', 'Branding', 'Plush Design'],
     concept:
-      'Translating a digital companion into a tangible brand. Rainbow Byte takes the core identity of Antigravity Bot and expands it into a playful, standalone IP.',
+      'Turning a desktop software assistant into a standalone character identity with physical merchandise.',
     workflow:
-      'Character evolution from UI mascot to a fully realized IP, including comprehensive expression sheets, turnaround designs, and physical product prototyping.',
+      'Drafted expression sheets, turnaround angles, and sample physical keychains and plush toys.',
     useCase: 'Plush toys, keychains, digital emote packs, and lifestyle merchandising.',
     zh: {
       title: '彩虹小比特 (Rainbow Byte)',
       subtitle: 'IP 形象设计',
-      description: '基于我的 Antigravity Bot 项目中的 "buddy" 助手形象衍生的独立 IP，通过丰富的文创周边和表情包赋予像素角色全新的生命力。',
-      concept: '将数字伴侣转化为实体品牌。Rainbow Byte 提取了 Antigravity Bot 的核心视觉基因，将其扩展为一个充满趣味的独立 IP。',
-      workflow: '从 UI 界面吉祥物到成熟 IP 的角色演进，涵盖全套表情包绘制、三视图设计以及实体文创产品的打样与转化。',
+      description: '基于 Antigravity Bot 助手衍生的吉祥物 IP 设计，制作了周边衍生品与表情包。',
+      concept: '将桌面软件中的像素助手延伸为独立的形象识别体系与实体文创。',
+      workflow: '绘制角色表情包、三视图，并打样亚克力挂件与毛绒公仔。',
       useCase: '毛绒公仔、亚克力挂件、数字表情包及生活方式周边产品。'
     }
   },
@@ -192,48 +156,47 @@ export const designProjects: Project[] = [
     title: 'Visual English Flashcards',
     subtitle: 'UI/UX & Education',
     description:
-      'IMAGE-2: Visually engaging educational flashcards combining vivid imagery and typography to enhance memory retention.',
+      'Educational flashcards that pair illustrations with word layouts to aid vocabulary study.',
     stack: ['UI Design', 'Illustration', 'Typography'],
     image: englishImg,
     tags: ['Education', 'UI/UX', 'Flashcards', 'Visual Design'],
     concept:
-      'Transforming mundane vocabulary learning into a delightful visual experience through strong mnemonic associations.',
+      'Using visual mnemonics to make vocabulary study clearer and easier to recall.',
     workflow:
-      'Information architecture mapping, establishing a consistent visual language, grid layout design, and batch illustration processing.',
+      'Mapped information architecture, created a unified illustration style, and laid out card grids.',
     useCase: 'Educational apps, language learning platforms, and digital or physical flashcard decks.',
     zh: {
       title: 'IMAGE-2 英语学习卡片',
       subtitle: 'UI/UX 教育产品设计',
-      description: 'IMAGE-2: 充满视觉吸引力的教育学习卡片，将生动的插图与精美的排版相结合，从而增强用户的记忆力。',
-      concept: '通过强有力的视觉记忆联想，将原本枯燥的词汇学习过程转化为令人愉悦的视觉体验。',
-      workflow: '信息架构梳理、建立一致的视觉语言规范、网格布局设计，以及批量插画资源的优化处理。',
+      description: '结合插图与文字布局的词汇学习卡片，帮助直观记忆单词。',
+      concept: '通过图像与词汇的联想映射，降低记忆负担。',
+      workflow: '梳理信息架构、制定一致的插画视觉规范并进行网格排版。',
       useCase: '教育类应用程序、语言学习平台，以及数字或实体学习闪卡。'
     }
   },
   {
-    id: 'voxel-openai-branding',
+    id: 'freelance-logo-design',
     category: 'design',
-    kind: 'ai-visual',
-    title: 'Voxel Brand Reimagining: A Sandbox Framework',
-    subtitle: 'Voxel Art',
+    kind: 'case-study',
+    title: 'Commercial Logo & Brand Identity',
+    subtitle: 'Freelance Design',
     description:
-      'A scalable visual framework for translating corporate identities into sandbox-style environments.',
-    stack: ['Voxel Art', 'Branding', 'AI Generation', 'World Building'],
-    image: voxelImg,
-    tags: ['Voxel Art', 'Branding', 'AI Generation', 'World Building'],
+      'A commercial logo designed in Canva for a freelance client, delivered with vector SVG and print files.',
+    stack: ['Canva', 'Logo Design', 'Brand Identity', 'Vector Graphic'],
+    image: handmadeLogoImg,
+    tags: ['Logo Design', 'Branding', 'Freelance', 'Commercial Delivery'],
     concept:
-      'Bridging high-tech AI branding and nostalgic sandbox creativity by reimagining the OpenAI logo as a living voxel landscape.',
+      'Designing a clean, memorable visual mark based on the client business goals and target audience.',
     workflow:
-      'Geometric voxelization of 2D logos via Midjourney/Nano-banana, embedded into a Minecraft-native scene with ray-traced atmospheric synthesis.',
-    useCase:
-      'Experimental branding for companies, interactive metaverse hubs, or social media campaigns engaging build-culture communities.',
+      'Client briefing, visual concept drafting, precision composition in Canva, and delivering production-ready commercial assets.',
+    useCase: 'Commercial branding, corporate identity, digital media, and offline merchandise.',
     zh: {
-      title: '体素化品牌重塑：沙盒视觉框架',
-      subtitle: '体素艺术',
-      description: '一个将企业视觉识别系统转化为沙盒环境的可扩展视觉框架。',
-      concept: '通过将 OpenAI 标志重新构想为充满生机的体素景观，建立高科技 AI 品牌与怀旧沙盒创意之间的桥梁。',
-      workflow: '通过 Midjourney/Nano-banana 对 2D 标志进行几何体素化，嵌入到具备光线追踪大气合成的 Minecraft 原生场景中。',
-      useCase: '适用于企业的实验性品牌建设、交互式元宇宙中心，或针对沙盒建造社区的社交媒体活动。'
+      title: '商业 LOGO 定制与品牌视觉设计',
+      subtitle: '独立自由设计师项目',
+      description: '为自由职业接单客户定制的商用 LOGO，使用 Canva 制作并交付全套矢量及印刷文件。',
+      concept: '根据客户的业务属性与受众定位，设计辨识度高且易于应用的品牌标志。',
+      workflow: '沟通需求、绘制概念草图、在 Canva 中调整图形细节，并打样交付商用文件包。',
+      useCase: '品牌商用落地、企业 VI 视觉识别、线上营销传播与产品周边呈现。'
     }
   },
   {

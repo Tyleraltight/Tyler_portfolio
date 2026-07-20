@@ -33,7 +33,7 @@ export const profileData = {
           duration: '2023–2026',
         },
         {
-          institution: 'Victoria University of Wellington',
+          institution: 'Whitireia and WelTec',
           degree: 'Bachelor Degree – Computer Science',
           duration: '2026–2027',
         },
@@ -64,7 +64,7 @@ export const profileData = {
             duration: '2023–2026',
           },
           {
-            institution: '惠灵顿维多利亚大学',
+            institution: 'Whitireia and WelTec',
             degree: '学士学位 – 计算机科学',
             duration: '2026–2027',
           },

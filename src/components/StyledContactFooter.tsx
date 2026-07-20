@@ -43,8 +43,10 @@ export function StyledContactFooter() {
                                 </svg>
                             </a>
                             <a
-                                href="#"
-                                className="footer-icon-btn footer-icon-disabled"
+                                href="https://www.linkedin.com/in/yusen-xu-020b49422/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="footer-icon-btn"
                                 aria-label="LinkedIn"
                             >
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
