@@ -6,6 +6,7 @@ import rainbowByteImg from '../assets/rainbow-byte.png'
 import englishImg from '../assets/english.png'
 import apocalypticBehemothImg from '../assets/apocalyptic-behemoth.png'
 import iammusicImg from '../assets/Screenshots.png'
+import sebBypassImg from '../assets/seb-bypass-cmd.png'
 
 export type ProjectCategory = 'engineering' | 'design'
 
@@ -18,6 +19,7 @@ export type Project = {
   description: string
   stack: string[]
   href?: string
+  githubUrl?: string
   image?: string
   // Case study fields for design projects
   intent?: string
@@ -50,11 +52,29 @@ export const engineeringProjects: Project[] = [
       'A goal-tracking and note-taking PWA built with Supabase for cloud sync and offline-first use across devices.',
     stack: ['React', 'Supabase', 'TypeScript', 'Tailwind'],
     href: 'https://github.com/Tyleraltight/EasyNote',
+    githubUrl: 'https://github.com/Tyleraltight/EasyNote',
     image: easyNoteImg,
     zh: {
       title: 'EasyNote',
       subtitle: '极简生产力枢纽',
       description: '一个结合目标追踪与笔记功能的 PWA 应用，支持 Supabase 云同步，具备离线优先设计并可多端协同。'
+    }
+  },
+  {
+    id: 'safe-exam-browser-bypass',
+    category: 'engineering',
+    kind: 'tooling',
+    title: 'SEB Bypass Tool',
+    subtitle: 'VMware Environment Patcher',
+    description: 'A toolkit for running Safe Exam Browser inside a VMware virtual machine by patching IL code to bypass virtualization and display checks.',
+    stack: ['C#', 'PowerShell', '.NET 9', 'IL Patching'],
+    href: 'https://github.com/Tyleraltight/SafeExamBrowser_bypass',
+    githubUrl: 'https://github.com/Tyleraltight/SafeExamBrowser_bypass',
+    image: sebBypassImg,
+    zh: {
+      title: 'SEB 虚拟机绕过工具',
+      subtitle: 'VMware 环境 IL 补丁',
+      description: '一个能在 VMware 虚拟机中运行 Safe Exam Browser 的工具包，通过给 IL 代码打补丁绕过虚拟机和显示器检测。'
     }
   },
   {
@@ -67,6 +87,7 @@ export const engineeringProjects: Project[] = [
       'An NSFW movie audit tool built with Gemini that rates content across five categories, including sex, violence, gore, profanity, and substance use, producing structured risk scores.',
     stack: ['FastAPI', 'Gemini', 'Redis', 'Vercel'],
     href: 'https://github.com/Tyleraltight/ParentsHandbook',
+    githubUrl: 'https://github.com/Tyleraltight/ParentsHandbook',
     image: parentsHandbookImg,
     zh: {
       title: 'ParentsHandbook',
@@ -84,6 +105,7 @@ export const engineeringProjects: Project[] = [
       'A landing page for a designer recruitment agency, built with a bento grid layout and strong typographic hierarchy.',
     stack: ['HTML', 'CSS', 'JavaScript'],
     href: 'https://tyleraltight.github.io/DesignerApplyment_company/A-Line-landing/index.html',
+    githubUrl: 'https://github.com/Tyleraltight/DesignerApplyment_company',
     image: alineHeroImg,
     zh: {
       title: 'A-Line',
@@ -101,6 +123,7 @@ export const engineeringProjects: Project[] = [
       'An interactive web vinyl record player with a 3D perspective gallery and audio streaming.',
     stack: ['React', 'CSS', 'JavaScript'],
     href: 'https://tyleraltight.github.io/IAMMUSIC/',
+    githubUrl: 'https://github.com/Tyleraltight/IAMMUSIC',
     image: iammusicImg,
     zh: {
       title: 'IAMMUSIC',
