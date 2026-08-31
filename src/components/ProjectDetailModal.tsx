@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import type { Project } from '../data/projects'
 import { EvolutionCompare } from './ui/EvolutionCompare'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -32,6 +32,7 @@ const cardVariants = {
 
 export function ProjectDetailModal({ project, onClose }: Props) {
     const { language } = useLanguage()
+    const [zoomedImage, setZoomedImage] = useState<string | null>(null)
 
     // Resolve localized strings cleanly
     const title = language === 'zh' && project.zh?.title ? project.zh.title : project.title
@@ -55,88 +56,114 @@ export function ProjectDetailModal({ project, onClose }: Props) {
         }
     }, [])
 
-    // Close on Escape key
+    // Close zoomed image or modal on Escape key
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose()
+            if (e.key === 'Escape') {
+                if (zoomedImage) {
+                    setZoomedImage(null)
+                } else {
+                    onClose()
+                }
+            }
         }
         window.addEventListener('keydown', handler)
         return () => window.removeEventListener('keydown', handler)
-    }, [onClose])
+    }, [onClose, zoomedImage])
 
     return (
-        <motion.div
-            className="editorial-backdrop"
-            variants={backdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            transition={{ duration: 0.22 }}
-            onClick={onClose}
-        >
+        <>
             <motion.div
-                className="editorial-sheet"
-                variants={cardVariants}
+                className="editorial-backdrop"
+                variants={backdropVariants}
                 initial="hidden"
                 animate="visible"
-                exit="exit"
-                onClick={(e) => e.stopPropagation()}
+                exit="hidden"
+                transition={{ duration: 0.22 }}
+                onClick={onClose}
             >
-                {/* ── Top Bar: Title & Sans-serif Close Button on Same Line ── */}
-                <header className="editorial-top-bar">
-                    <div className="editorial-top-title-group">
-                        <span className="editorial-top-main-title">{title}</span>
-                        {subtitle && <span className="editorial-top-subtitle-badge">{subtitle}</span>}
-                    </div>
-                    <button className="editorial-close-btn" onClick={onClose} aria-label="Close">
-                        ×
-                    </button>
-                </header>
+                <motion.div
+                    className="editorial-sheet"
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    {/* ── Top Bar: Title & Sans-serif Close Button on Same Line ── */}
+                    <header className="editorial-top-bar">
+                        <div className="editorial-top-title-group">
+                            <span className="editorial-top-main-title">{title}</span>
+                            {subtitle && <span className="editorial-top-subtitle-badge">{subtitle}</span>}
+                        </div>
+                        <button className="editorial-close-btn" onClick={onClose} aria-label="Close">
+                            ×
+                        </button>
+                    </header>
 
-                {/* ── Main Editorial Document Flow ── */}
-                <div className="editorial-body">
-                    {/* CASE A: Evolution Project (Rainbow Byte) — Immediate full-screen Origin → Finished Product comparison */}
-                    {hasEvolution && project.evolution && project.image ? (
-                        <section className="editorial-spread editorial-spread--evolution">
-                            <EvolutionCompare
-                                originImage={project.evolution.originImage}
-                                originLabel={project.evolution.originLabel}
-                                resultImage={project.image}
-                                resultLabel={project.evolution.resultLabel}
-                                story={project.evolution.story}
-                                zhStory={project.evolution.zhStory}
-                                language={language}
-                            />
-                        </section>
-                    ) : (
-                        /* CASE B: Standard Design Project (IRONBITE, IANG) — Clean uncropped hero + Frameless Narrative */
-                        <section className="editorial-spread editorial-spread--hero">
-                            {hasVideo ? (
-                                <div className="pure-hero-media-wrap">
-                                    <video
-                                        src={project.videoUrl}
-                                        autoPlay
-                                        muted
-                                        loop
-                                        playsInline
-                                        className="pure-hero-media"
-                                    />
-                                </div>
-                            ) : hasImage ? (
-                                <div className="pure-hero-media-wrap">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="pure-hero-media"
-                                    />
-                                </div>
-                            ) : null}
+                    {/* ── Main Editorial Document Flow ── */}
+                    <div className="editorial-body">
+                        {/* CASE A: Evolution Project (Rainbow Byte) — Immediate full-screen Origin → Mid Sprite → Finished Product comparison */}
+                        {hasEvolution && project.evolution && project.image ? (
+                            <section className="editorial-spread editorial-spread--evolution">
+                                <EvolutionCompare
+                                    originImage={project.evolution.originImage}
+                                    originLabel={project.evolution.originLabel}
+                                    midImage={project.evolution.midImage}
+                                    midLabel={project.evolution.midLabel}
+                                    resultImage={project.image}
+                                    resultLabel={project.evolution.resultLabel}
+                                    story={project.evolution.story}
+                                    zhStory={project.evolution.zhStory}
+                                    language={language}
+                                    onImageClick={(src) => setZoomedImage(src)}
+                                />
+                            </section>
+                        ) : (
+                            /* CASE B: Standard Design Project (IRONBITE, IANG) — Clean uncropped hero / gallery + Frameless Narrative */
+                            <section className="editorial-spread editorial-spread--hero">
+                                {hasVideo ? (
+                                    <div className="pure-hero-media-wrap">
+                                        <video
+                                            src={project.videoUrl}
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            className="pure-hero-media"
+                                        />
+                                    </div>
+                                ) : project.galleryImages && project.galleryImages.length > 1 ? (
+                                    <div className="pure-gallery-media-grid">
+                                        {project.galleryImages.map((imgSrc, idx) => (
+                                            <div key={idx} className="pure-gallery-item">
+                                                <img
+                                                    src={imgSrc}
+                                                    alt={`${project.title} asset ${idx + 1}`}
+                                                    className="pure-gallery-image"
+                                                    onClick={() => setZoomedImage(imgSrc)}
+                                                    title={language === 'zh' ? '点击放大查看' : 'Click to enlarge'}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : hasImage ? (
+                                    <div className="pure-hero-media-wrap">
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="pure-hero-media"
+                                            onClick={() => project.image && setZoomedImage(project.image)}
+                                            title={language === 'zh' ? '点击放大查看' : 'Click to enlarge'}
+                                        />
+                                    </div>
+                                ) : null}
 
-                            {description && (
-                                <p className="editorial-narrative-text">{description}</p>
-                            )}
-                        </section>
-                    )}
+                                {description && (
+                                    <p className="editorial-narrative-text">{description}</p>
+                                )}
+                            </section>
+                        )}
 
                     {/* SPREAD 3: Process & Case Study Columns (01 Concept, 02 Workflow, 03 Deliverables) */}
                     {hasCaseStudy && (
@@ -183,5 +210,41 @@ export function ProjectDetailModal({ project, onClose }: Props) {
                 </div>
             </motion.div>
         </motion.div>
+
+        {/* ── Fullscreen Image Lightbox Zoom Overlay ── */}
+        <AnimatePresence>
+            {zoomedImage && (
+                <motion.div
+                    className="editorial-lightbox-backdrop"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={() => setZoomedImage(null)}
+                >
+                    <button
+                        className="editorial-lightbox-close-btn"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setZoomedImage(null)
+                        }}
+                        aria-label="Close zoom preview"
+                    >
+                        ×
+                    </button>
+                    <motion.img
+                        src={zoomedImage}
+                        alt="Enlarged preview"
+                        className="editorial-lightbox-img"
+                        initial={{ scale: 0.92, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.92, opacity: 0 }}
+                        transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+                        onClick={(e) => e.stopPropagation()}
+                    />
+                </motion.div>
+            )}
+        </AnimatePresence>
+    </>
     )
 }

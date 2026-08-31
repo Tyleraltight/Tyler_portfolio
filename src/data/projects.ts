@@ -1,4 +1,9 @@
 import handmadeLogoImg from '../assets/HandmadeLogo.jpg'
+import iangMockupImg from '../assets/IANG.jpg'
+import iangStudioImg from '../assets/IANG2.jpg'
+import noagiLogoImg from '../assets/noagi_logo_1x1.png'
+import noagiMockupImg from '../assets/noagi_books_mockup_v2.jpg'
+import noagiPosterImg from '../assets/noagi_zine_poster.jpg'
 import parentsHandbookImg from '../assets/Parentshandbook.png'
 import easyNoteImg from '../assets/mockup1.png'
 import alineHeroImg from '../assets/aline-hero.png'
@@ -39,6 +44,8 @@ export type Project = {
   evolution?: {
     originImage: string
     originLabel: string
+    midImage?: string
+    midLabel?: string
     resultLabel: string
     story: string
     zhStory?: string
@@ -203,6 +210,8 @@ export const designProjects: Project[] = [
     evolution: {
       originImage: sitecardDefaultImg,
       originLabel: 'Google Antigravity Logo',
+      midImage: alienTransparentImg,
+      midLabel: 'Pixel Mascot Sprite',
       resultLabel: 'Character IP Matrix',
       story:
         'Originating from my open-source tool for Google Antigravity, this project uses an authentic prototype to expand the logo into an original character IP matrix.',
@@ -226,15 +235,31 @@ export const designProjects: Project[] = [
     }
   },
   {
-    id: 'design-coming-soon',
+    id: 'noagi-books-identity',
     category: 'design',
-    kind: 'coming-soon',
-    title: 'Coming Soon',
-    description: 'Design in Progress',
-    stack: [],
+    kind: 'case-study',
+    title: 'NoAGI BOOKS: Offline Archive',
+    subtitle: 'Independent Bookstore Rebrand & Visual Identity',
+    description:
+      'I worked with the bookstore founder from the earliest conversations to build the brand for this independent physical bookstore. When generative AI was picking up steam everywhere, we named the place "NoAGI" partly as a statement, partly because it just felt right: the shop was always going to be about ink, paper, and reading without an algorithm suggesting what comes next. I handled the brand direction, drew the logotype with custom letterforms, and took the work through to physical goods, including drawer boxes and zine packaging.',
+    stack: ['LoveArt', 'Figma', 'GPT Image-2', 'Brand Identity', 'Typography'],
+    image: noagiLogoImg,
+    galleryImages: [noagiLogoImg, noagiMockupImg, noagiPosterImg],
+    tags: ['Brand Identity', 'Packaging', 'Typography', 'Merchandising', 'Editorial'],
+    concept:
+      'Deconstructing the mechanical barcode into a skyline of book spines, where tilted books break symmetry to symbolize independent minds navigating algorithmic conformity.',
+    workflow:
+      '1. Typeface: Generate carved letterforms and custom logotype in LoveArt.\n2. Vector: Import into Figma for node cleanup, optical kerning, and barcode grid construction.\n3. Assembly: Synthesize drawer box mockups and zine poster visuals with GPT Image-2, finalizing layout in Figma.',
+    useCase:
+      'Brand identity system, 3-tier archival book boxes, washi tape zine posters, editorial book design, and bookstore spatial signage.',
     zh: {
-      title: '概念设计中',
-      description: '新作品正在酝酿'
+      title: 'NoAGI BOOKS: 离线纸本档案馆',
+      subtitle: '独立实体书店品牌重塑与 IP 视觉系统',
+      description:
+        '为国内隐于城市街巷中的独立实体书店量身打造的全套品牌重塑与 IP 视觉系统。在算法接管思考的 AGI 浪潮中，以“NoAGI”命名作为清醒的退守与反叛，退回植物纤维与油墨的触觉重量，构筑一座让读者重回思考源点的离线文化空间。',
+      concept: '解构商业条形码为高低错落的书架书脊，以打破对称的倾斜书本隐喻独立思考的读者；结合粗粝温润的手工字形与纯蓝封箱胶带，建立反算法的先锋纸本美学。',
+      workflow: '1. 字形：在 LoveArt 中生成刻凿感基础字形与“圖書室”定制字标。\n2. 矢量：导入 Figma 进行节点修正、字偶间距微调与条形码网格放样。\n3. 总装：借助 GPT Image-2 渲染三层书盒与海报样机，在 Figma 完成排版。',
+      useCase: '品牌 VI 手册、三层抽屉式典藏书盒、实验性和纸胶带海报、书籍装帧与线下书室空间导视。'
     }
   },
   {
@@ -242,26 +267,27 @@ export const designProjects: Project[] = [
     category: 'design',
     kind: 'case-study',
     title: 'IANG: Brand Identity System',
-    subtitle: 'Commercial Brand Design & Visual Identity',
+    subtitle: 'Commercial Brand Design & Merchandise System',
     description:
-      'An original brand logo designed for a local tarot and occultism studio in China, officially registered and commercially deployed as their trademark. The identity merges tarot celestial symbolism with elegant serif typography.',
-    stack: ['Figma', 'Brand Identity', 'Typography', 'Commercial Delivery'],
+      'A bespoke original brand logo designed for a local tarot and occultism studio in China, officially registered as a commercial trademark and extended into a full physical merchandise line—including custom tote bags, hot-foil appointment cards, engraved wooden hangers, and brass storage boxes.',
+    stack: ['Figma', 'Brand Identity', 'Merchandising', 'Typography', 'Commercial Delivery'],
     image: handmadeLogoImg,
-    tags: ['Logo Design', 'Branding', 'Typography', 'Commercial'],
+    galleryImages: [handmadeLogoImg, iangMockupImg, iangStudioImg],
+    tags: ['Logo Design', 'Branding', 'Merchandising', 'Typography', 'Commercial'],
     concept:
-      'Drawing from the Major Arcana "The Sun XIX" and healing hand gestures, paired with bespoke serif typography for an elegant occult studio mark.',
+      'Drawing from the Major Arcana "The Sun XIX" and healing hand gestures, paired with bespoke serif typography to create an enigmatic brand mark with versatile physical product extensions.',
     workflow:
-      '1. Concept: Extract esoteric tarot archetypes (The Sun XIX) and celestial hand motifs.\n2. Craft: Vectorize fine linework and refine bespoke serif typography in Figma.\n3. Delivery: Export trademark-ready vector assets and studio branding guidelines.',
+      '1. Concept: Extract esoteric tarot archetypes (The Sun XIX) and celestial hand motifs.\n2. Craft: Vectorize fine linework and refine bespoke serif typography in Figma.\n3. Extension: Export trademark vector assets and spec physical merchandise (stationery, woodcraft, and brass items).',
     useCase:
-      'Trademark registration, studio signage, custom tarot card decks, packaging, and hot-foil stationery.',
+      'Trademark registration, studio signage, merchandise collection (totes, cards, hangers, brass boxes), and physical interior display.',
     zh: {
       title: 'IANG: 品牌视觉识别系统',
-      subtitle: '商业品牌设计与视觉规范交付',
+      subtitle: '商业品牌设计与实体周边规范',
       description:
-        '为国内某城市本地神秘学（Tarot）工作室量身定制的原创品牌 Logo，现已作为正式商标落地商用。设计融合了塔罗星象神秘学意象与优雅衬线字体。',
-      concept: '提取塔罗大阿卡那“太阳牌 (The Sun XIX)”与双手托举的疗愈意象，结合高定衬线字体打造典雅的神秘学品牌标识。',
-      workflow: '1. 意象：确立工作室定位，提取“太阳牌 (The Sun XIX)”与星象神秘学符号。\n2. 绘制：在 Figma 中完成极细线稿绘制与“IANG”高定衬线字标排版。\n3. 交付：输出商标注册标准矢量稿与全套门店商用物料规范。',
-      useCase: '商标注册、工作室门头标识、塔罗卡背设计、定制包装与烫金物料。'
+        '为国内某城市本地神秘学（Tarot）工作室量身定制的原创品牌 Logo，现已作为正式商标落地商用，并围绕该标识延伸定制了手提袋、烫金预约卡、木作衣架与黄铜收纳盒等一系列实体周边产品。',
+      concept: '提取塔罗大阿卡那“太阳牌 (The Sun XIX)”与双手托举的疗愈意象，结合高定衬线字体打造兼具神秘学氛围与商业延展性的品牌标识及实体周边。',
+      workflow: '1. 意象：确立工作室定位，提取“太阳牌 (The Sun XIX)”与星象神秘学符号。\n2. 绘制：在 Figma 中完成极细线稿绘制与“IANG”高定衬线字标排版。\n3. 延展：输出商标注册标准矢量稿，并完成纸袋、卡片、木作与黄铜周边打样规范。',
+      useCase: '商标注册、工作室门头标识、全套塔罗周边物料（手提袋/预约卡/木衣架/黄铜盒）与空间陈列。'
     }
   },
 ]
