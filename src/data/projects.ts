@@ -244,24 +244,24 @@ export const designProjects: Project[] = [
     title: 'IANG: Brand Identity System',
     subtitle: 'Commercial Brand Design & Visual Identity',
     description:
-      'A bespoke commercial visual identity translating tarot and celestial symbolism into a refined typographic mark for a creative lifestyle brand. The project establishes a rigorous geometric construction grid, balanced negative space, and complete vector delivery for seamless multi-medium deployment.',
-    stack: ['Brand Identity', 'Vector Design', 'Typography', 'Commercial Delivery'],
+      'An original brand logo designed for a local tarot and occultism studio in China, officially registered and commercially deployed as their trademark. The identity merges tarot celestial symbolism with elegant serif typography.',
+    stack: ['Figma', 'Brand Identity', 'Typography', 'Commercial Delivery'],
     image: handmadeLogoImg,
     tags: ['Logo Design', 'Branding', 'Typography', 'Commercial'],
     concept:
-      'Synthesizing arcane celestial motifs and tarot archetypes with modernist geometric typography to create an enigmatic yet scalable luxury brand mark.',
+      'Drawing from the Major Arcana "The Sun XIX" and healing hand gestures, paired with bespoke serif typography for an elegant occult studio mark.',
     workflow:
-      'Brand discovery, moodboard curation, geometric logo grid construction, typographic optical kerning, color hierarchy definition, and multi-format commercial asset delivery.',
+      '1. Concept: Extract esoteric tarot archetypes (The Sun XIX) and celestial hand motifs.\n2. Craft: Vectorize fine linework and refine bespoke serif typography in Figma.\n3. Delivery: Export trademark-ready vector assets and studio branding guidelines.',
     useCase:
-      'Brand identity guidelines, digital storefronts, social media systems, premium product packaging, hot-foil stationery, and boutique signage.',
+      'Trademark registration, studio signage, custom tarot card decks, packaging, and hot-foil stationery.',
     zh: {
       title: 'IANG: 品牌视觉识别系统',
       subtitle: '商业品牌设计与视觉规范交付',
       description:
-        '为独立文创品牌量身定制的商业视觉识别系统，将塔罗星象神秘学符号与现代几何排版美学有机融合。通过严谨的黄金比例网格构建、正负形空间微调与跨媒介矢量规范，实现从品牌定位到商业落地的全流程交付。',
-      concept: '解构古老塔罗符号与天体运行韵律，以现代极简几何与高定字体排版重塑神秘学美学，赋予品牌独特且高级的辨识度。',
-      workflow: '品牌诉求与受众调研、视觉情绪板提炼、标志比例网格放样、字体光学微调、品牌色彩规范制定及全场景商用交付包输出。',
-      useCase: '品牌 VI 手册、电商与独立站视觉、社交媒体规范、高端烫金包装及线下门店物料应用。'
+        '为国内某城市本地神秘学（Tarot）工作室量身定制的原创品牌 Logo，现已作为正式商标落地商用。设计融合了塔罗星象神秘学意象与优雅衬线字体。',
+      concept: '提取塔罗大阿卡那“太阳牌 (The Sun XIX)”与双手托举的疗愈意象，结合高定衬线字体打造典雅的神秘学品牌标识。',
+      workflow: '1. 意象：确立工作室定位，提取“太阳牌 (The Sun XIX)”与星象神秘学符号。\n2. 绘制：在 Figma 中完成极细线稿绘制与“IANG”高定衬线字标排版。\n3. 交付：输出商标注册标准矢量稿与全套门店商用物料规范。',
+      useCase: '商标注册、工作室门头标识、塔罗卡背设计、定制包装与烫金物料。'
     }
   },
 ]
