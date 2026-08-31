@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import type { Project } from '../data/projects'
-import { Body, MetaText } from './ui/Typography'
+import { EvolutionCompare } from './ui/EvolutionCompare'
 import { useLanguage } from '../contexts/LanguageContext'
 
 type Props = {
@@ -15,38 +15,36 @@ const backdropVariants = {
 }
 
 const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.97 },
+    hidden: { opacity: 0, y: 30, scale: 0.98 },
     visible: {
         opacity: 1,
         y: 0,
         scale: 1,
-        transition: { type: 'spring' as const, damping: 28, stiffness: 320 },
+        transition: { type: 'spring' as const, damping: 30, stiffness: 300 },
     },
     exit: {
         opacity: 0,
-        y: 30,
-        scale: 0.97,
-        transition: { duration: 0.2, ease: 'easeIn' as const },
+        y: 20,
+        scale: 0.98,
+        transition: { duration: 0.18, ease: 'easeOut' as const },
     },
 }
 
 export function ProjectDetailModal({ project, onClose }: Props) {
     const { language } = useLanguage()
-    
-    // Resolve localized strings
+
+    // Resolve localized strings cleanly
     const title = language === 'zh' && project.zh?.title ? project.zh.title : project.title
     const subtitle = language === 'zh' && project.zh?.subtitle ? project.zh.subtitle : project.subtitle
     const description = language === 'zh' && project.zh?.description ? project.zh.description : project.description
     const concept = language === 'zh' && project.zh?.concept ? project.zh.concept : project.concept
     const workflow = language === 'zh' && project.zh?.workflow ? project.zh.workflow : project.workflow
     const useCase = language === 'zh' && project.zh?.useCase ? project.zh.useCase : project.useCase
-    const intent = language === 'zh' && project.zh?.intent ? project.zh.intent : project.intent
 
     const hasVideo = !!project.videoUrl
     const hasImage = !!project.image
-    const hasMedia = hasVideo || hasImage
     const hasCaseStudy = !!(concept || workflow || useCase)
-    const hasLegacyCaseStudy = !!(intent || workflow || project.toolsUsed)
+    const hasEvolution = !!project.evolution
 
     // Lock body scroll when modal is open
     useEffect(() => {
@@ -68,186 +66,121 @@ export function ProjectDetailModal({ project, onClose }: Props) {
 
     return (
         <motion.div
-            className="modal-backdrop"
+            className="editorial-backdrop"
             variants={backdropVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.22 }}
             onClick={onClose}
         >
             <motion.div
-                className={`modal-card ${hasMedia ? 'modal-card--video' : ''}`}
+                className="editorial-sheet"
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Close button */}
-                <button className="modal-close" onClick={onClose} aria-label="Close">
-                    ✕
-                </button>
+                {/* ── Top Bar: Title & Sans-serif Close Button on Same Line ── */}
+                <header className="editorial-top-bar">
+                    <div className="editorial-top-title-group">
+                        <span className="editorial-top-main-title">{title}</span>
+                        {subtitle && <span className="editorial-top-subtitle-badge">{subtitle}</span>}
+                    </div>
+                    <button className="editorial-close-btn" onClick={onClose} aria-label="Close">
+                        ×
+                    </button>
+                </header>
 
-                {hasMedia ? (
-                    <>
-                        {/* Media slot — side-by-side layout */}
-                        <div className="modal-video-slot">
+                {/* ── Main Editorial Document Flow ── */}
+                <div className="editorial-body">
+                    {/* CASE A: Evolution Project (Rainbow Byte) — Immediate full-screen Origin → Finished Product comparison */}
+                    {hasEvolution && project.evolution && project.image ? (
+                        <section className="editorial-spread editorial-spread--evolution">
+                            <EvolutionCompare
+                                originImage={project.evolution.originImage}
+                                originLabel={project.evolution.originLabel}
+                                resultImage={project.image}
+                                resultLabel={project.evolution.resultLabel}
+                                story={project.evolution.story}
+                                zhStory={project.evolution.zhStory}
+                                language={language}
+                            />
+                        </section>
+                    ) : (
+                        /* CASE B: Standard Design Project (IRONBITE, IANG) — Clean uncropped hero + Frameless Narrative */
+                        <section className="editorial-spread editorial-spread--hero">
                             {hasVideo ? (
-                                <video
-                                    src={project.videoUrl}
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    className="modal-video"
-                                />
-                            ) : (
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="modal-media-image"
-                                />
-                            )}
-                        </div>
-
-                        <div className="modal-body">
-                            <MetaText>
-                                {subtitle} · {language === 'zh' ? 'AI 视觉' : 'AI Visual'}
-                            </MetaText>
-                            <h2 className="modal-title">{title}</h2>
-                            <Body>{description}</Body>
-
-                            {hasCaseStudy && (
-                                <div className="modal-case-study">
-                                    <MetaText className="modal-case-study-label">{language === 'zh' ? '案例研究' : 'Case Study'}</MetaText>
-
-                                    {concept && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '核心概念' : 'Concept'}</span>
-                                            <Body>{concept}</Body>
-                                        </div>
-                                    )}
-
-                                    {workflow && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '工作流' : 'Workflow'}</span>
-                                            <Body>{workflow}</Body>
-                                        </div>
-                                    )}
-
-                                    {useCase && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '应用场景' : 'Use Case'}</span>
-                                            <Body>{useCase}</Body>
-                                        </div>
-                                    )}
-
-                                    {project.tags && project.tags.length > 0 && (
-                                        <div className="modal-tool-tags">
-                                            {project.tags.map((tag) => (
-                                                <span key={tag} className="modal-tool-tag">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    )}
+                                <div className="pure-hero-media-wrap">
+                                    <video
+                                        src={project.videoUrl}
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        className="pure-hero-media"
+                                    />
                                 </div>
-                            )}
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        {/* Image modal — original stacked layout */}
-                        <div className="modal-image-slot">
-                            {project.image ? (
-                                <img src={project.image} alt={project.title} />
-                            ) : (
-                                <span className="modal-image-placeholder">Image preview</span>
-                            )}
-                        </div>
-
-                        <div className="modal-body">
-                            <MetaText>
-                                {subtitle} · {project.kind === 'ai-visual' ? (language === 'zh' ? 'AI 视觉' : 'AI Visual') : (language === 'zh' ? '项目' : 'Project')}
-                            </MetaText>
-                            <h2 className="modal-title">{title}</h2>
-                            <Body>{description}</Body>
-
-                            {/* Case study fields (concept/workflow/useCase) */}
-                            {hasCaseStudy && (
-                                <div className="modal-case-study">
-                                    <MetaText className="modal-case-study-label">{language === 'zh' ? '案例研究' : 'Case Study'}</MetaText>
-
-                                    {concept && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '核心概念' : 'Concept'}</span>
-                                            <Body>{concept}</Body>
-                                        </div>
-                                    )}
-
-                                    {workflow && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '工作流' : 'Workflow'}</span>
-                                            <Body>{workflow}</Body>
-                                        </div>
-                                    )}
-
-                                    {useCase && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '应用场景' : 'Use Case'}</span>
-                                            <Body>{useCase}</Body>
-                                        </div>
-                                    )}
-
-                                    {project.tags && project.tags.length > 0 && (
-                                        <div className="modal-tool-tags">
-                                            {project.tags.map((tag) => (
-                                                <span key={tag} className="modal-tool-tag">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    )}
+                            ) : hasImage ? (
+                                <div className="pure-hero-media-wrap">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="pure-hero-media"
+                                    />
                                 </div>
+                            ) : null}
+
+                            {description && (
+                                <p className="editorial-narrative-text">{description}</p>
                             )}
+                        </section>
+                    )}
 
-                            {/* Legacy case study fields (intent/toolsUsed) */}
-                            {!hasCaseStudy && hasLegacyCaseStudy && (
-                                <div className="modal-case-study">
-                                    <MetaText className="modal-case-study-label">{language === 'zh' ? '案例研究' : 'Case Study'}</MetaText>
-
-                                    {intent && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '目标' : 'Intent'}</span>
-                                            <Body>{intent}</Body>
+                    {/* SPREAD 3: Process & Case Study Columns (01 Concept, 02 Workflow, 03 Deliverables) */}
+                    {hasCaseStudy && (
+                        <section className="editorial-spread editorial-spread--process">
+                            <div className="editorial-process-grid">
+                                {concept && (
+                                    <div className="editorial-process-col">
+                                        <div className="editorial-col-header">
+                                            <span className="editorial-col-num">01</span>
+                                            <h4 className="editorial-col-title">
+                                                {language === 'zh' ? '核心概念' : 'Concept'}
+                                            </h4>
                                         </div>
-                                    )}
+                                        <p className="editorial-col-body">{concept}</p>
+                                    </div>
+                                )}
 
-                                    {workflow && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '工作流' : 'Workflow'}</span>
-                                            <Body>{workflow}</Body>
+                                {workflow && (
+                                    <div className="editorial-process-col">
+                                        <div className="editorial-col-header">
+                                            <span className="editorial-col-num">02</span>
+                                            <h4 className="editorial-col-title">
+                                                {language === 'zh' ? '设计推导' : 'Workflow'}
+                                            </h4>
                                         </div>
-                                    )}
+                                        <p className="editorial-col-body">{workflow}</p>
+                                    </div>
+                                )}
 
-                                    {project.toolsUsed && project.toolsUsed.length > 0 && (
-                                        <div className="modal-field">
-                                            <span className="modal-field-label">{language === 'zh' ? '使用工具' : 'Tools'}</span>
-                                            <div className="modal-tool-tags">
-                                                {project.toolsUsed.map((tool) => (
-                                                    <span key={tool} className="modal-tool-tag">
-                                                        {tool}
-                                                    </span>
-                                                ))}
-                                            </div>
+                                {useCase && (
+                                    <div className="editorial-process-col">
+                                        <div className="editorial-col-header">
+                                            <span className="editorial-col-num">03</span>
+                                            <h4 className="editorial-col-title">
+                                                {language === 'zh' ? '落地交付' : 'Deliverables'}
+                                            </h4>
                                         </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    </>
-                )}
+                                        <p className="editorial-col-body">{useCase}</p>
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+                    )}
+                </div>
             </motion.div>
         </motion.div>
     )

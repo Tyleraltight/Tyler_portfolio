@@ -155,7 +155,10 @@ export function FeaturedProjectsSection() {
         {/* Design & AI Visuals */}
         <div id="design-visuals" style={{ scrollMarginTop: '100px', marginTop: '5rem' }}>
           <div className="projects-row projects-row--design">
-            {designProjects.map((project) => (
+            {designProjects.map((project) =>
+              project.kind === 'coming-soon' ? (
+                <ComingSoonCard key={project.id} />
+              ) : (
               <div
                 key={project.id}
                 className="bento-card bento-card--interactive project-card project-card--visual"
@@ -196,7 +199,8 @@ export function FeaturedProjectsSection() {
                   <Body>{language === 'zh' && project.zh?.description ? project.zh.description : project.description}</Body>
                 </div>
               </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </Container>

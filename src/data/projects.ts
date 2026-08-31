@@ -3,10 +3,14 @@ import parentsHandbookImg from '../assets/Parentshandbook.png'
 import easyNoteImg from '../assets/mockup1.png'
 import alineHeroImg from '../assets/aline-hero.png'
 import rainbowByteImg from '../assets/rainbow-byte.png'
-import englishImg from '../assets/english.png'
 import apocalypticBehemothImg from '../assets/apocalyptic-behemoth.png'
 import iammusicImg from '../assets/Screenshots.png'
 import sebBypassImg from '../assets/seb-bypass-cmd.png'
+import antigravityBotImg from '../assets/antigravity_bot.png'
+import alienTransparentImg from '../assets/alien-transparent.png'
+import sitecardDefaultImg from '../assets/sitecard-default.png'
+
+export { antigravityBotImg, alienTransparentImg, sitecardDefaultImg }
 
 export type ProjectCategory = 'engineering' | 'design'
 
@@ -29,6 +33,16 @@ export type Project = {
   tags?: string[]
   concept?: string
   useCase?: string
+  // Multi-image gallery for immersive case study viewer
+  galleryImages?: string[]
+  // Evolution/origin story for IP projects (e.g. Rainbow Byte)
+  evolution?: {
+    originImage: string
+    originLabel: string
+    resultLabel: string
+    story: string
+    zhStory?: string
+  }
   zh?: {
     title?: string
     subtitle?: string
@@ -51,7 +65,7 @@ export const engineeringProjects: Project[] = [
     description:
       'A goal-tracking and note-taking PWA built with Supabase for cloud sync and offline-first use across devices.',
     stack: ['React', 'Supabase', 'TypeScript', 'Tailwind'],
-    href: 'https://github.com/Tyleraltight/EasyNote',
+    href: 'https://www.easynote.date/',
     githubUrl: 'https://github.com/Tyleraltight/EasyNote',
     image: easyNoteImg,
     zh: {
@@ -86,7 +100,7 @@ export const engineeringProjects: Project[] = [
     description:
       'An NSFW movie audit tool built with Gemini that rates content across five categories, including sex, violence, gore, profanity, and substance use, producing structured risk scores.',
     stack: ['FastAPI', 'Gemini', 'Redis', 'Vercel'],
-    href: 'https://github.com/Tyleraltight/ParentsHandbook',
+    href: 'https://parentshandbook.vercel.app/',
     githubUrl: 'https://github.com/Tyleraltight/ParentsHandbook',
     image: parentsHandbookImg,
     zh: {
@@ -148,103 +162,107 @@ export const engineeringProjects: Project[] = [
 // Row 2 — Design & AI Visuals
 export const designProjects: Project[] = [
   {
+    id: 'ironbite-shanghai-tide',
+    category: 'design',
+    kind: 'case-study',
+    title: 'IRONBITE: Shanghai Tide',
+    subtitle: 'Sci-Fi IP Worldbuilding & Mecha Creature Concept',
+    description:
+      'A near-future sci-fi concept establishing the amphibious assault mech AAM-07C "Gator" and pilot Kai Ito along the submerged Shanghai coastal defense line. Combining predatory crocodilian biomechanics with heavy industrial hydraulics, the project presents complete worldbuilding and mechanical schematics.',
+    stack: ['GPT Image-2', 'Worldbuilding', 'Figma', 'Prompt Engineering', 'Concept Art'],
+    image: apocalypticBehemothImg,
+    tags: ['Sci-Fi', 'Mecha', 'Creature Design', 'Worldbuilding', 'Concept Art'],
+    concept:
+      'Fusing apex reptilian biomechanics with heavy industrial military engineering for submerged urban warfare.',
+    workflow:
+      '1. Worldbuild: Establish coastal defense lore and amphibious assault mech (AAM-07C) specifications.\n2. Synthesize: Block out rough sketches, directing GPT Image-2 for cinematic key art, orthographics, and character sheets.\n3. Assemble: Design HUD data overlays and typographic hierarchy in Figma, compositing the master setting sheet.',
+    useCase:
+      'Video game IP development, film visual dev, setting artbook, and collectible figurine prototyping.',
+    zh: {
+      title: 'IRONBITE: 上海潮汐',
+      subtitle: '近未来科幻机甲生物概念设计与世界观构建',
+      description:
+        '设定于近未来海平面上升后的东亚沿海防线，围绕两栖重型突击机甲 AAM-07C“巨鳄”及其驾驶员 Kai Ito 展开的原创科幻 IP 概念设计。结合冷血掠食者的生物力学骨骼与重工业液压结构，呈现从世界观叙事到机体拆解的完整概念设计体系。',
+      concept: '以两栖顶级掠食者的解剖构造为蓝本，结合重工业机械美学，打造适应淹没都市战场的两栖近战重型载具。',
+      workflow: '1. 设定：确立近未来淹没防线世界观与两栖突击机甲（AAM-07C）核心参数。\n2. 生成：绘制初始形态草图，借助 GPT Image-2 渲染关键帧插画、机械三视图与角色设定。\n3. 总装：在 Figma 中完成 HUD 数据标注、工业排版并整合为完整设定集图纸。',
+      useCase: '科幻游戏 IP、影视动画概念设计、世界观设定集出版与雕像手办开发。'
+    }
+  },
+  {
     id: 'rainbow-byte-mascot',
     category: 'design',
     kind: 'case-study',
     title: 'Rainbow Byte: Pixel Joy',
-    subtitle: 'Mascot Branding',
+    subtitle: 'Logo to Character IP Matrix',
     description:
-      'A mascot branding project expanding the pixel character from my Antigravity Bot into emotes and merchandise.',
-    stack: ['Pixel Art', 'Character Design', 'Merchandising'],
+      'Rooted in my open-source project originally built as a companion tool for Google Antigravity, this project takes that authentic prototype to systematically derive a standalone original character IP matrix.',
+    stack: ['Figma', 'Aseprite', 'Photoshop', 'GPT Image-2', 'Pixel Art'],
     image: rainbowByteImg,
-    tags: ['Pixel Art', 'Mascot', 'Branding', 'Plush Design'],
+    tags: ['Logo to IP', 'Character Design', 'Pixel Art', 'Merchandising'],
+    toolsUsed: ['Figma', 'Aseprite', 'Adobe Photoshop', 'GPT Image-2'],
+    evolution: {
+      originImage: sitecardDefaultImg,
+      originLabel: 'Google Antigravity Logo',
+      resultLabel: 'Character IP Matrix',
+      story:
+        'Originating from my open-source tool for Google Antigravity, this project uses an authentic prototype to expand the logo into an original character IP matrix.',
+      zhStory:
+        '源自为 Google Antigravity 开发的开源工具，以此为真实原型将工具 Logo 拓展为原创角色 IP 矩阵。'
+    },
     concept:
-      'Turning a desktop software assistant into a standalone character identity with physical merchandise.',
+      'Transforming a functional software logo from an authentic tool prototype into an original character IP matrix.',
     workflow:
-      'Drafted expression sheets, turnaround angles, and sample physical keychains and plush toys.',
-    useCase: 'Plush toys, keychains, digital emote packs, and lifestyle merchandising.',
+      '1. Prototype: 3-state animated pixel sprites for open-source tool.\n2. Expand: 24 emotive states and 5-view turnarounds in Figma & Aseprite.\n3. Finalize: Staged with GPT Image-2, assembled in Figma.',
+    useCase:
+      'Character IP guidelines, open-source tool assets, sticker packs, and plush merchandise.',
     zh: {
       title: '彩虹小比特 (Rainbow Byte)',
-      subtitle: 'IP 形象设计',
-      description: '基于 Antigravity Bot 助手衍生的吉祥物 IP 设计，制作了周边衍生品与表情包。',
-      concept: '将桌面软件中的像素助手延伸为独立的形象识别体系与实体文创。',
-      workflow: '绘制角色表情包、三视图，并打样亚克力挂件与毛绒公仔。',
-      useCase: '毛绒公仔、亚克力挂件、数字表情包及生活方式周边产品。'
+      subtitle: 'Logo 到角色 IP 矩阵推导',
+      description:
+        '本项目源自我的开源项目。最初为 Google Antigravity 打造辅助工具，随后以此为原型进行拓展，推导出一套拥有真实原型的原创角色 IP 矩阵。',
+      concept: '以真实的开源工具为原型，将功能性 Logo 转化为具备故事性的原创角色 IP。',
+      workflow: '1. 原型：为开源工具设计 3 态动态像素。\n2. 拓展：在 Figma / Aseprite 规范 24 态表情与五视角。\n3. 总装：GPT Image-2 协同渲染，在 Figma 完成海报。',
+      useCase: '角色 IP 规范、开源工具物料、表情包与毛绒周边。'
     }
   },
   {
-    id: 'english-learning-cards',
+    id: 'design-coming-soon',
     category: 'design',
-    kind: 'case-study',
-    title: 'Visual English Flashcards',
-    subtitle: 'UI/UX & Education',
-    description:
-      'Educational flashcards that pair illustrations with word layouts to aid vocabulary study.',
-    stack: ['UI Design', 'Illustration', 'Typography'],
-    image: englishImg,
-    tags: ['Education', 'UI/UX', 'Flashcards', 'Visual Design'],
-    concept:
-      'Using visual mnemonics to make vocabulary study clearer and easier to recall.',
-    workflow:
-      'Mapped information architecture, created a unified illustration style, and laid out card grids.',
-    useCase: 'Educational apps, language learning platforms, and digital or physical flashcard decks.',
+    kind: 'coming-soon',
+    title: 'Coming Soon',
+    description: 'Design in Progress',
+    stack: [],
     zh: {
-      title: 'IMAGE-2 英语学习卡片',
-      subtitle: 'UI/UX 教育产品设计',
-      description: '结合插图与文字布局的词汇学习卡片，帮助直观记忆单词。',
-      concept: '通过图像与词汇的联想映射，降低记忆负担。',
-      workflow: '梳理信息架构、制定一致的插画视觉规范并进行网格排版。',
-      useCase: '教育类应用程序、语言学习平台，以及数字或实体学习闪卡。'
+      title: '概念设计中',
+      description: '新作品正在酝酿'
     }
   },
   {
-    id: 'freelance-logo-design',
+    id: 'iang-brand-identity',
     category: 'design',
     kind: 'case-study',
-    title: 'Commercial Logo & Brand Identity',
-    subtitle: 'Freelance Design',
+    title: 'IANG: Brand Identity System',
+    subtitle: 'Commercial Brand Design & Visual Identity',
     description:
-      'A commercial logo designed in Canva for a freelance client, delivered with vector SVG and print files.',
-    stack: ['Canva', 'Logo Design', 'Brand Identity', 'Vector Graphic'],
+      'A bespoke commercial visual identity translating tarot and celestial symbolism into a refined typographic mark for a creative lifestyle brand. The project establishes a rigorous geometric construction grid, balanced negative space, and complete vector delivery for seamless multi-medium deployment.',
+    stack: ['Brand Identity', 'Vector Design', 'Typography', 'Commercial Delivery'],
     image: handmadeLogoImg,
-    tags: ['Logo Design', 'Branding', 'Freelance', 'Commercial Delivery'],
+    tags: ['Logo Design', 'Branding', 'Typography', 'Commercial'],
     concept:
-      'Designing a clean, memorable visual mark based on the client business goals and target audience.',
+      'Synthesizing arcane celestial motifs and tarot archetypes with modernist geometric typography to create an enigmatic yet scalable luxury brand mark.',
     workflow:
-      'Client briefing, visual concept drafting, precision composition in Canva, and delivering production-ready commercial assets.',
-    useCase: 'Commercial branding, corporate identity, digital media, and offline merchandise.',
+      'Brand discovery, moodboard curation, geometric logo grid construction, typographic optical kerning, color hierarchy definition, and multi-format commercial asset delivery.',
+    useCase:
+      'Brand identity guidelines, digital storefronts, social media systems, premium product packaging, hot-foil stationery, and boutique signage.',
     zh: {
-      title: '商业 LOGO 定制与品牌视觉设计',
-      subtitle: '独立自由设计师项目',
-      description: '为自由职业接单客户定制的商用 LOGO，使用 Canva 制作并交付全套矢量及印刷文件。',
-      concept: '根据客户的业务属性与受众定位，设计辨识度高且易于应用的品牌标志。',
-      workflow: '沟通需求、绘制概念草图、在 Canva 中调整图形细节，并打样交付商用文件包。',
-      useCase: '品牌商用落地、企业 VI 视觉识别、线上营销传播与产品周边呈现。'
-    }
-  },
-  {
-    id: 'apocalyptic-behemoth-ip',
-    category: 'design',
-    kind: 'case-study',
-    title: 'Apocalyptic Behemoth: IP Concept',
-    subtitle: 'Character Design & 2D Animation',
-    description:
-      'An original apocalyptic behemoth character concept, designed for 2D animation, featuring intricate organic armor and imposing scale.',
-    stack: ['Clip Studio Paint', 'Photoshop', '2D Illustration'],
-    image: apocalypticBehemothImg,
-    tags: ['Animation', 'Character Design', 'Creature Concept', '2D Art'],
-    concept:
-      'Exploring the terrifying beauty of post-apocalyptic apex predators through sharp silhouettes and bio-mechanical aesthetics.',
-    workflow:
-      'Initial rough sketching and silhouette blocking, followed by detailed line art and layered digital painting in professional 2D illustration software.',
-    useCase: 'Concept art for animated series, video game boss design, and collectible art prints.',
-    zh: {
-      title: '末日巨兽：动画 IP 设定',
-      subtitle: '角色设计与 2D 插画',
-      description: '原创的末日巨兽角色设定，专为动画制作设计，具有错综复杂的有机生物装甲和极具压迫感的体型。',
-      concept: '通过凌厉的剪影与生物机械美学，探索末日世界顶级掠食者的恐怖之美。',
-      workflow: '使用 2D 绘图软件进行初期草图绘制、剪影构建、精细线稿刻画以及分层数字上色。',
-      useCase: '动画剧集概念设计、电子游戏 Boss 设定以及艺术收藏版画。'
+      title: 'IANG: 品牌视觉识别系统',
+      subtitle: '商业品牌设计与视觉规范交付',
+      description:
+        '为独立文创品牌量身定制的商业视觉识别系统，将塔罗星象神秘学符号与现代几何排版美学有机融合。通过严谨的黄金比例网格构建、正负形空间微调与跨媒介矢量规范，实现从品牌定位到商业落地的全流程交付。',
+      concept: '解构古老塔罗符号与天体运行韵律，以现代极简几何与高定字体排版重塑神秘学美学，赋予品牌独特且高级的辨识度。',
+      workflow: '品牌诉求与受众调研、视觉情绪板提炼、标志比例网格放样、字体光学微调、品牌色彩规范制定及全场景商用交付包输出。',
+      useCase: '品牌 VI 手册、电商与独立站视觉、社交媒体规范、高端烫金包装及线下门店物料应用。'
     }
   },
 ]
+
